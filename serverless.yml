@@ -1,0 +1,50 @@
+service: my-first-service
+
+app: my-first-app
+org: kazordoon
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+functions:
+  getProducts:
+    handler: handler.getProducts
+    events:
+      - http:
+          path: products
+          method: get
+          cors: true
+          integration: lambda
+  getOneProduct:
+    handler: handler.getOneProduct
+    events:
+      - http:
+          path: products/{id}
+          method: get
+          cors: true
+          integration: lambda
+  storeProduct:
+    handler: handler.storeProduct
+    events:
+      - http:
+          path: products
+          method: post
+          cors: true
+          integration: lambda
+  updateProduct:
+    handler: handler.updateProduct
+    events:
+      - http:
+          path: products/{id}
+          method: put
+          cors: true
+          integration: lambda
+  destroyProduct:
+    handler: handler.destroyProduct
+    events:
+      - http:
+          path: products/{id}
+          method: delete
+          cors: true
+          integration: lambda
